@@ -1,0 +1,7 @@
+﻿Flask
+Flask-SQLAlchemy
+APScheduler
+python-dotenv
+reportlab
+matplotlib
+pytz

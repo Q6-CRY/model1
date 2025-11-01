@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>健康记录</h3>
+<form method="post" action="/health/add">
+  <div class="mb-3">
+    <label class="form-label">家庭成员</label>
+    <select name="user_id" class="form-select">
+      {% for u in users %}
+        <option value="{{ u.id }}">{{ u.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">记录类型</label>
+    <select name="kind" class="form-select">
+      <option value="temperature">体温</option>
+      <option value="bp">血压</option>
+      <option value="glucose">血糖</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">数值</label>
+    <input class="form-control" name="value" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">备注</label>
+    <input class="form-control" name="note">
+  </div>
+  <button class="btn btn-primary">保存记录</button>
+</form>
+{% endblock %}

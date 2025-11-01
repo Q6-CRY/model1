@@ -1,0 +1,19 @@
+﻿<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>新增药品</title></head>
+<body>
+  {% if not users %}
+    <p>需要先创建用户。<a href="{{ url_for('create_sample_user') }}">创建一个示例用户</a></p>
+  {% else %}
+  <form method="post">
+    <label>用户</label>
+    <select name="user_id">{% for u in users %}<option value="{{u.id}}">{{u.name}}（ID={{u.id}}）</option>{% endfor %}</select>
+    <label>药品名称</label><input name="name" required>
+    <label>剂量（可选）</label><input name="dose">
+    <label>时间（逗号分隔，08:00,12:00...）</label><input name="times" value="08:00,12:00,20:00" required>
+    <label>开始日期（YYYY-MM-DD）</label><input name="start_date" required>
+    <label>结束日期（YYYY-MM-DD）</label><input name="end_date" required>
+    <button type="submit">保存</button>
+  </form>
+  {% endif %}
+  <p><a href="{{ url_for('index') }}">返回首页</a></p>
+</body></html>

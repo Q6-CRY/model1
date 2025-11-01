@@ -1,0 +1,14 @@
+﻿<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>用药提醒 · 原型</title></head>
+<body>
+  <h1>药品服用提醒 · 最小原型</h1>
+  {% if users %}<p>用户数量：{{ users|length }}</p>{% else %}
+  <p>暂无用户。<a href="{{ url_for('create_sample_user') }}">创建一个示例用户</a></p>{% endif %}
+  <p><a href="{{ url_for('add_medication') }}">新增药品</a></p>
+  <h2>即将到来的提醒（Top 20）</h2>
+  <ul>
+  {% for r in upcoming %}
+    <li>{{ r.remind_time.strftime("%Y-%m-%d %H:%M") }} · {{ r.medication.name }} {% if r.confirmed %}(已确认){% endif %}</li>
+  {% else %}<li>暂无提醒。</li>{% endfor %}
+  </ul>
+</body></html>
